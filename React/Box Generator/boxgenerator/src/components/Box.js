@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 
-const Box = () => {
+const Box = (props) => {
     const [color, setColor] = useState('');
-    const [boxes, setBoxes] = useState([]);
     const [size, setSize] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setBoxes([...boxes, { color, size }]); // Add the current color value to the boxes array
-        setColor(''); // Reset the color input field
+        props.showForm(color, size)
+        setColor('');
         setSize('');
     };
 
@@ -21,19 +20,6 @@ const Box = () => {
                 <input className="col-form-label" type="text" value={size} onChange={(e) => setSize(e.target.value)} />
                 <input className="btn btn-outline-secondary" style={{ marginLeft: '20px' }} type="submit" value="Add" />
             </form>
-            <div style={{ display: 'flex', margin: '100px', flexWrap: 'wrap' }}>
-                {boxes.map((boxes, index) => (
-                    <div
-                        key={index}
-                        style={{
-                            backgroundColor: boxes.color,
-                            width: `${boxes.size}px`,
-                            height: `${boxes.size}px`,
-                            margin: '10px'
-                        }}
-                    ></div>
-                ))}
-            </div>
         </div>
     );
 };
