@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import DisplayPokemon from './DisplayPokemon';
+import axios from 'axios';
 
-const Pokemon = (props) => {
-    const [pokemons, setPokemon] = useState([]);
+const Pokemon = () => {
+    const [pokemons, setPokemons] = useState([]);
 
     const handleClick = () => {
-        fetch("https://pokeapi.co/api/v2/pokemon?limit=807")
-            .then(response => {
-                return response.json();
+        axios
+            .get('https://pokeapi.co/api/v2/pokemon?limit=807')
+            .then((response) => {
+                setPokemons(response.data.results);
             })
-            .then(response => {
-                setPokemon(response.results);
-            })
-            .catch(err => {
-                console.log(err);
+            .catch((error) => {
+                console.log(error);
             });
     }
 

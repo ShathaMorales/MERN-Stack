@@ -4,9 +4,9 @@ const DisplayPokemon = (props) => {
     const pokemons = props.pokemons;
     return (
         <div>
-            <ol>
+            <ul>
                 {pokemons.map((pokemon, indx) => <li key={indx}>{pokemon.name}</li>)}
-            </ol>
+            </ul>
         </div>
     )
 }
